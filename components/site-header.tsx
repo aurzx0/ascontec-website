@@ -19,9 +19,9 @@ export function SiteHeader() {
             priority 
           />
           {/* Este é o texto que trouxemos de volta, com formatação para não encavalar */}
-          <span className="text-2xl font-bold text-slate-800 tracking-tight hidden sm:inline whitespace-nowrap">
-            ASCONTEC
-          </span>
+          <span className="text-base sm:text-2xl font-bold text-slate-800 tracking-tight whitespace-nowrap">
+  ASCONTEC
+</span>
         </Link>
 
         {/* Links do Menu - Com espaçamento dinâmico e mx-auto para centralizar */}

@@ -27,7 +27,7 @@ export function HeroSection() {
           {/* Botões de Ação */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full">
             <Link
-              href="https://wa.me/5582999999999"
+              href="https://wa.me/558299923184?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20contador%20da%20ASCONTEC."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-red-800 hover:bg-red-900 text-white font-medium rounded-full px-6 py-4 gap-2.5 text-sm sm:text-base shadow-md shadow-red-900/10 transition-colors w-full sm:w-auto text-center"

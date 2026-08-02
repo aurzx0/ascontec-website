@@ -22,7 +22,7 @@ export function HeroSection() {
 
           {/* Subtítulo */}
           <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-            Soluções contábeis e assessoria técnica especializada em Maceió para fazer seu negócio crescer com tranquilidade.
+            Soluções contábeis e assessoria técnica especializada em Maceió para fazer seu negócio crescer com tranquilidadedade.
           </p>
 
           {/* Botões de Ação */}
@@ -34,7 +34,7 @@ export function HeroSection() {
               </Link>
             </Button>
             
-            <Button variant="outline" size="lg" asChild> className="rounded-full px-6 py-6 gap-2 text-base border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" size="lg" asChild className="rounded-full px-6 py-6 gap-2 text-base border-slate-300 text-slate-700 hover:bg-slate-50">
               <Link href="#servicos">
                 Conheça nossos serviços
                 <ArrowRight className="w-4 h-4" />

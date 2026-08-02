@@ -161,14 +161,14 @@ export function SpecialtiesSection() {
               onClick={() => setActiveId(s.id)}
               layoutId={`card-${s.id}`}
               variants={fadeUp}
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 300, damping: 24 }}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 text-left shadow-sm transition-shadow hover:shadow-2xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 text-left shadow-sm transition-shadow hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transform-gpu will-change-transform"
             >
               <div className="flex items-center justify-between">
                 <motion.span
                   layoutId={`icon-${s.id}`}
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
+                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground transform-gpu"
                 >
                   <s.icon className="h-7 w-7" />
                 </motion.span>
@@ -178,7 +178,7 @@ export function SpecialtiesSection() {
               </div>
               <motion.h3
                 layoutId={`title-${s.id}`}
-                className="mt-6 text-2xl font-bold text-foreground"
+                className="mt-6 text-2xl font-bold text-foreground transform-gpu"
               >
                 {s.title}
               </motion.h3>
@@ -189,7 +189,7 @@ export function SpecialtiesSection() {
                 Ver como ajudamos
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-              <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
+              <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 opacity-0 blur-xl transition-opacity group-hover:opacity-100 hidden sm:block" />
             </motion.button>
           ))}
         </RevealGroup>
@@ -198,17 +198,21 @@ export function SpecialtiesSection() {
       <AnimatePresence>
         {active && (
           <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-6">
+            {/* Fundo escuro sem blur no celular para evitar travamentos */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setActiveId(null)}
-              className="absolute inset-0 bg-foreground/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-foreground/60 backdrop-blur-none sm:backdrop-blur-sm transform-gpu"
             />
+            
+            {/* Modal com aceleração de GPU e física responsiva */}
             <motion.div
               layoutId={`card-${active.id}`}
-              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-border bg-card p-8 shadow-2xl sm:p-10"
-              transition={{ type: "spring", stiffness: 260, damping: 30 }}
+              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-xl transform-gpu will-change-transform"
+              transition={{ type: "spring", stiffness: 350, damping: 30 }}
             >
               <button
                 type="button"
@@ -222,7 +226,7 @@ export function SpecialtiesSection() {
               <div className="flex items-center gap-4">
                 <motion.span
                   layoutId={`icon-${active.id}`}
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground transform-gpu"
                 >
                   <active.icon className="h-8 w-8" />
                 </motion.span>
@@ -233,15 +237,15 @@ export function SpecialtiesSection() {
 
               <motion.h3
                 layoutId={`title-${active.id}`}
-                className="mt-6 font-serif text-3xl font-bold text-foreground"
+                className="mt-6 font-serif text-3xl font-bold text-foreground transform-gpu"
               >
                 {active.title}
               </motion.h3>
 
               <motion.p
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.4 }}
+                transition={{ delay: 0.1, duration: 0.25 }}
                 className="mt-4 text-pretty leading-relaxed text-muted-foreground"
               >
                 {active.full}
@@ -251,7 +255,7 @@ export function SpecialtiesSection() {
                 initial="hidden"
                 animate="visible"
                 variants={{
-                  visible: { transition: { delayChildren: 0.25, staggerChildren: 0.08 } },
+                  visible: { transition: { delayChildren: 0.15, staggerChildren: 0.05 } },
                 }}
                 className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2"
               >
@@ -270,9 +274,9 @@ export function SpecialtiesSection() {
               </motion.ul>
 
               <motion.a
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
+                transition={{ delay: 0.25, duration: 0.25 }}
                 href="https://wa.me/558299923184?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20como%20a%20ASCONTEC%20pode%20ajudar%20a%20minha%20empresa."
                 target="_blank"
                 rel="noopener noreferrer"

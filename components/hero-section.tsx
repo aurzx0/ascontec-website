@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { MessageSquare, ArrowRight, ShieldCheck } from "lucide-react"
 
 export function HeroSection() {
@@ -22,24 +21,28 @@ export function HeroSection() {
 
           {/* Subtítulo */}
           <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-            Soluções contábeis e assessoria técnica especializada em Maceió para fazer seu negócio crescer com tranquilidadedade.
+            Soluções contábeis e assessoria técnica especializada em Maceió para fazer seu negócio crescer com tranquilidade.
           </p>
 
           {/* Botões de Ação */}
           <div className="flex flex-wrap items-center gap-4">
-            <Button size="lg" asChild className="bg-red-800 hover:bg-red-900 text-white rounded-full px-6 py-6 gap-2 text-base shadow-md shadow-red-900/10">
-              <Link href="https://wa.me/5582999999999" target="_blank" rel="noopener noreferrer">
-                <MessageSquare className="w-5 h-5" />
-                Falar com um Contador no WhatsApp
-              </Link>
-            </Button>
-            
-            <Button variant="outline" size="lg" asChild className="rounded-full px-6 py-6 gap-2 text-base border-slate-300 text-slate-700 hover:bg-slate-50">
-              <Link href="#servicos">
-                Conheça nossos serviços
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
+            <Link
+              href="https://wa.me/5582999999999"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-red-800 hover:bg-red-900 text-white font-medium rounded-full px-6 py-3.5 gap-2 text-base shadow-md shadow-red-900/10 transition-colors"
+            >
+              <MessageSquare className="w-5 h-5" />
+              Falar com um Contador no WhatsApp
+            </Link>
+
+            <Link
+              href="#servicos"
+              className="inline-flex items-center justify-center border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium rounded-full px-6 py-3.5 gap-2 text-base transition-colors"
+            >
+              Conheça nossos serviços
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
         </div>

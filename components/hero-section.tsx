@@ -3,15 +3,41 @@
 import Link from "next/link"
 import { MessageSquare, ArrowRight, ShieldCheck } from "lucide-react"
 
-export function HeroSection() {
-  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    const element = document.getElementById("servicos")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+let animationId: number | null = null
+
+function customScrollTo(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  e.preventDefault()
+  const target = document.getElementById(id)
+  if (!target) return
+
+  if (animationId) cancelAnimationFrame(animationId)
+
+  const headerOffset = 70
+  const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset
+  const startY = window.scrollY
+  const diff = targetY - startY
+  const duration = 350
+  let start: number | null = null
+
+  function step(timestamp: number) {
+    if (!start) start = timestamp
+    const elapsed = timestamp - start
+    const progress = Math.min(elapsed / duration, 1)
+    const ease = 1 - Math.pow(1 - progress, 4)
+
+    window.scrollTo(0, startY + diff * ease)
+
+    if (elapsed < duration) {
+      animationId = requestAnimationFrame(step)
+    } else {
+      animationId = null
     }
   }
 
+  animationId = requestAnimationFrame(step)
+}
+
+export function HeroSection() {
   return (
     <section className="relative pt-8 pb-20 md:pt-14 md:pb-28 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +74,7 @@ export function HeroSection() {
 
             <a
               href="#servicos"
-              onClick={scrollToServices}
+              onClick={(e) => customScrollTo(e, "servicos")}
               className="inline-flex items-center justify-center border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium rounded-full px-6 py-4 gap-2.5 text-sm sm:text-base transition-colors w-full sm:w-auto text-center cursor-pointer"
             >
               <span>Conheça nossos serviços</span>

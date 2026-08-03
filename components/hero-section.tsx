@@ -1,7 +1,17 @@
+"use client"
+
 import Link from "next/link"
 import { MessageSquare, ArrowRight, ShieldCheck } from "lucide-react"
 
 export function HeroSection() {
+  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const element = document.getElementById("servicos")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section className="relative pt-8 pb-20 md:pt-14 md:pb-28 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,13 +46,14 @@ export function HeroSection() {
               <span>Falar com um Contador no WhatsApp</span>
             </Link>
 
-            <Link
+            <a
               href="#servicos"
-              className="inline-flex items-center justify-center border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium rounded-full px-6 py-4 gap-2.5 text-sm sm:text-base transition-colors w-full sm:w-auto text-center"
+              onClick={scrollToServices}
+              className="inline-flex items-center justify-center border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium rounded-full px-6 py-4 gap-2.5 text-sm sm:text-base transition-colors w-full sm:w-auto text-center cursor-pointer"
             >
               <span>Conheça nossos serviços</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
-            </Link>
+            </a>
           </div>
 
         </div>

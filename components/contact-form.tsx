@@ -23,7 +23,6 @@ const initialForm: FormState = {
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [loading, setLoading] = useState(false)
-  // 1. ESTADO DA ARMADILHA
   const [honeypot, setHoneypot] = useState("") 
   
   const [feedback, setFeedback] = useState<{
@@ -40,22 +39,30 @@ export function ContactForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setFeedback(null)
 
-    // 2. TRAVA DA ARMADILHA CONTRA BOTS
+    // 1. TRAVA DA ARMADILHA CONTRA BOTS (Honeypot)
     if (honeypot !== "") {
       console.log("Spam detectado e bloqueado pela armadilha Honeypot!")
-      // Damos um falso positivo (feedback verde) para o bot ir embora sem tentar de novo
       setFeedback({
         type: "success",
         message: "Mensagem enviada com sucesso! Entraremos em contato em breve."
       })
       setForm(initialForm)
       setHoneypot("")
-      return // O return mata a execução aqui. Nada vai para o Supabase!
+      return
+    }
+
+    // 2. VALIDAÇÃO DE TAMANHO DE CARACTERES (Proteção contra Payload Gigante)
+    if (form.nome.length > 100 || form.email.length > 150 || form.telefone.length > 20 || form.mensagem.length > 1000) {
+      setFeedback({
+        type: "error",
+        message: "Os campos excedem o limite máximo de caracteres permitidos."
+      })
+      return
     }
 
     setLoading(true)
-    setFeedback(null)
 
     try {
       const supabase = createSupabaseClient()
@@ -91,7 +98,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       
-      {/* 3. CAMPO INVISÍVEL (O BOT PREENCHE, O HUMANO NÃO VÊ) */}
+      {/* CAMPO INVISÍVEL (ARMADILHA DE SPAM) */}
       <div style={{ display: 'none' }} aria-hidden="true">
         <label htmlFor="bot-field">Não preencha este campo se você for humano:</label>
         <input
@@ -115,6 +122,7 @@ export function ContactForm() {
             name="nome"
             type="text"
             required
+            maxLength={100}
             value={form.nome}
             onChange={handleChange}
             placeholder="Seu nome completo"
@@ -131,6 +139,7 @@ export function ContactForm() {
             name="email"
             type="email"
             required
+            maxLength={150}
             value={form.email}
             onChange={handleChange}
             placeholder="seu@email.com"
@@ -148,6 +157,7 @@ export function ContactForm() {
           name="telefone"
           type="tel"
           required
+          maxLength={20}
           value={form.telefone}
           onChange={handleChange}
           placeholder="(82) 99999-9999"
@@ -164,6 +174,7 @@ export function ContactForm() {
           name="mensagem"
           required
           rows={5}
+          maxLength={1000}
           value={form.mensagem}
           onChange={handleChange}
           placeholder="Como podemos ajudar?"

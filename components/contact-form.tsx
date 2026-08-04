@@ -23,6 +23,9 @@ const initialForm: FormState = {
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [loading, setLoading] = useState(false)
+  // 1. ESTADO DA ARMADILHA
+  const [honeypot, setHoneypot] = useState("") 
+  
   const [feedback, setFeedback] = useState<{
     type: "success" | "error"
     message: string
@@ -37,13 +40,26 @@ export function ContactForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    // 2. TRAVA DA ARMADILHA CONTRA BOTS
+    if (honeypot !== "") {
+      console.log("Spam detectado e bloqueado pela armadilha Honeypot!")
+      // Damos um falso positivo (feedback verde) para o bot ir embora sem tentar de novo
+      setFeedback({
+        type: "success",
+        message: "Mensagem enviada com sucesso! Entraremos em contato em breve."
+      })
+      setForm(initialForm)
+      setHoneypot("")
+      return // O return mata a execução aqui. Nada vai para o Supabase!
+    }
+
     setLoading(true)
     setFeedback(null)
 
     try {
       const supabase = createSupabaseClient()
       
-      // Note os colchetes [ ] abraçando o objeto
       const { error } = await supabase.from("contatos").insert([
         {
           nome: (form.nome || "").trim(),
@@ -61,7 +77,6 @@ export function ContactForm() {
         message: "Mensagem enviada com sucesso! Entraremos em contato em breve."
       })
     } catch (err) {
-      // Isso vai mostrar o erro exato no F12 caso algo dê errado no futuro
       console.error("Erro detalhado do Supabase:", err)
       
       setFeedback({
@@ -75,6 +90,21 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      
+      {/* 3. CAMPO INVISÍVEL (O BOT PREENCHE, O HUMANO NÃO VÊ) */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <label htmlFor="bot-field">Não preencha este campo se você for humano:</label>
+        <input
+          type="text"
+          id="bot-field"
+          name="bot-field"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="nome" className="text-sm font-medium text-foreground">

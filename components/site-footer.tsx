@@ -2,10 +2,10 @@
 
 import { Phone, Mail, MapPin, Clock, AtSign, MessageCircle } from "lucide-react"
 import { Reveal } from "./reveal"
-import { ContactForm } from "./contact-form"
+import { ContactForm } from "./contact-form" // O componente com o Mapa + Zap será carregado aqui!
 
 const WHATSAPP_URL =
-  "https://wa.me/558299923184?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20contador%20da%20ASCONTEC."
+  "https://wa.me/5582999923184?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20contador%20da%20ASCONTEC."
 
 const phones = ["(82) 9992-3184"]
 const emails = ["contabilidade@ascontec.cnt.br", "hguedes@ascontec.cnt.br"]
@@ -38,21 +38,10 @@ export function SiteFooter() {
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
+        
+        {/* AQUI ESTAVAM OS TEXTOS ANTIGOS. ELES FORAM REMOVIDOS. */}
         <Reveal className="mb-16">
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-10">
-            <div className="mx-auto max-w-2xl">
-              <h2 className="text-balance font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Envie sua mensagem
-              </h2>
-              <p className="mt-3 text-pretty text-muted-foreground">
-                Preencha o formulário abaixo e nossa equipe retornará o contato o
-                mais breve possível.
-              </p>
-              <div className="mt-8">
-                <ContactForm />
-              </div>
-            </div>
-          </div>
+          <ContactForm />
         </Reveal>
 
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">

@@ -104,10 +104,6 @@ export function SiteFooter() {
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               <p>
                 Rua do Imperador, 369, Centro — Maceió, AL
-                <br />
-                <span className="text-muted-foreground/80">
-                  Galeria Elizeu Teixeira
-                </span>
               </p>
             </div>
           </div>

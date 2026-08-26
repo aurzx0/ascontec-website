@@ -30,8 +30,7 @@ export function ContactForm() {
               <MapPin className="w-6 h-6 mt-1 flex-shrink-0" />
               <p>
                 Rua do Imperador, 369 - Centro<br />
-                Maceió - AL, 57020-670<br />
-                Galeria Elizeu Teixeira
+                Maceió - AL, 57020-670
               </p>
             </div>
 

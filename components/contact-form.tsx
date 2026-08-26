@@ -1,6 +1,6 @@
 import { MapPin, MessageCircle } from "lucide-react"
 
-export function ContactLocation() {
+export function ContactForm() {
   // 1. Coloque o número do seu tio aqui (DDD + Número, sem espaços ou traços)
   const whatsappNumber = "5582999923184"
   const whatsappMessage = encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços da Ascontec.")
@@ -48,13 +48,13 @@ export function ContactLocation() {
 
           {/* Lado Direito - Mapa Interativo do Google */}
           <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
-            <iframe
-              // Substitua o link abaixo pelo link do mapa da Ascontec (instruções no Passo 2)
+          <iframe
+              title="Mapa de localização da Ascontec"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.167018661898!2d-35.73761242417483!3d-9.666766702166202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x701457b88f95a25%3A0x6526aecbb032107d!2sR.%20do%20Imperador%2C%20369%20-%20Centro%2C%20Macei%C3%B3%20-%20AL%2C%2057020-670!5e0!3m2!1spt-BR!2sbr!4v1787604110462!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowFullScreen={true}
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full"

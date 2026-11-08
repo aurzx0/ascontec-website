@@ -5,9 +5,9 @@ import { Reveal } from "./reveal"
 import { ContactForm } from "./contact-form" // O componente com o Mapa + Zap será carregado aqui!
 
 const WHATSAPP_URL =
-  "https://wa.me/5582999923184?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20contador%20da%20ASCONTEC."
+  "https://wa.me/5582991354550?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20contador%20da%20ASCONTEC."
 
-  const phones = ["(82) 9992-3184", "(82) 3221-1746"]
+const phones = ["(82) 99135-4550", "(82) 3221-1746"]
 const emails = ["contabilidade@ascontec.cnt.br", "hguedes@ascontec.cnt.br"]
 
 export function SiteFooter() {

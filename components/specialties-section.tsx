@@ -277,7 +277,7 @@ export function SpecialtiesSection() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.25 }}
-                href="https://wa.me/558299923184?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20como%20a%20ASCONTEC%20pode%20ajudar%20a%20minha%20empresa."
+                href="https://wa.me/5582991354550?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20como%20a%20ASCONTEC%20pode%20ajudar%20a%20minha%20empresa."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-brand-bright hover:shadow-xl"
